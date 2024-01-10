@@ -37,9 +37,9 @@
 .active_friends {
   background: var(--bg-secondary);
 }
-.active_friends .small_circle {
+/* .active_friends .small_circle {
   background: #1876f2;
-}
+} */
 .active_friends i {
   filter: invert(100%);
 }
@@ -81,6 +81,7 @@
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  margin-top: 5px;
 }
 .req_card button {
   width: 170px !important;

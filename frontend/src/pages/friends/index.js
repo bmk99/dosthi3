@@ -5,8 +5,16 @@ import Header from "../../components/header";
 import { friendspage } from "../../functions/reducers";
 import { getFriendsPageInfos } from "../../functions/user";
 import Card from "./Card";
+// import {AiFillSetting, AiFillHome} from 'react-icons/ai';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HomeIcon from '@mui/icons-material/Home';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import CakeIcon from '@mui/icons-material/Cake';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import "./style.css";
-export default function Friends({setVisible}) {
+export default function Friends() {
   const { user } = useSelector((state) => ({ ...state }));
   const { type } = useParams();
 
@@ -39,7 +47,9 @@ export default function Friends({setVisible}) {
           <div className="friends_left_header">
             <h3>Friends</h3>
             <div className="small_circle">
-              <i className="settings_filled_icon"></i>
+              {/* <AiFillSetting /> */}
+              <SettingsIcon />
+              {/* <i className="settings_filled_icon"></i> */}
             </div>
           </div>
           <div className="friends_left_wrap">
@@ -50,11 +60,13 @@ export default function Friends({setVisible}) {
               }`}
             >
               <div className="small_circle">
-                <i className="friends_home_icon "></i>
+                {/* <i className="friends_home_icon "></i> */}
+                <HomeIcon />
               </div>
               <span>Home</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
               </div>
             </Link>
             <Link
@@ -64,11 +76,14 @@ export default function Friends({setVisible}) {
               }`}
             >
               <div className="small_circle">
-                <i className="friends_requests_icon"></i>
+                {/* <i className="friends_requests_icon"></i> */}
+<PersonAddIcon />
               </div>
               <span>Friend Requests</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
+
               </div>
             </Link>
             <Link
@@ -78,11 +93,15 @@ export default function Friends({setVisible}) {
               }`}
             >
               <div className="small_circle">
-                <i className="friends_requests_icon"></i>
+                {/* <i className="friends_requests_icon"></i> */}
+                <PersonAddIcon />
+
               </div>
               <span>Sent Requests</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
+
               </div>
             </Link>
             <Link
@@ -92,11 +111,14 @@ export default function Friends({setVisible}) {
               }`}
             >
               <div className="small_circle">
-                <i className="friends_suggestions_icon"></i>
+                {/* <i className="friends_suggestions_icon"></i> */}
+                <Diversity3Icon />
               </div>
               <span>Suggestions</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
+
               </div>
             </Link>
             <Link
@@ -106,20 +128,26 @@ export default function Friends({setVisible}) {
               }`}
             >
               <div className="small_circle">
-                <i className="all_friends_icon"></i>
+                {/* <i className="all_friends_icon"></i> */}
+                <PeopleAltIcon />
               </div>
               <span>All Friends</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
+
               </div>
             </Link>
             <div className="mmenu_item hover3">
               <div className="small_circle">
-                <i className="birthdays_icon"></i>
+                {/* <i className="birthdays_icon"></i> */}
+                <CakeIcon />
               </div>
               <span>Birthdays</span>
               <div className="rArrow">
-                <i className="right_icon"></i>
+                {/* <i className="right_icon"></i> */}
+                <NavigateNextIcon />
+
               </div>
             </div>
           </div>
