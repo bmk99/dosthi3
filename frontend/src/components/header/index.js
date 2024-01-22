@@ -83,6 +83,9 @@ export default function Header() {
             </IconButton>
           </Tooltip>
         </Link>
+        <Link to={"/messenger"}>
+          Messenger
+        </Link>
       </div>
       <div className="header_right">
         <Link to="/profile" className="profile_link hover1">

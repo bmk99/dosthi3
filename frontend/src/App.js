@@ -61,18 +61,18 @@ function App() {
       <Route element={<LoggedInRoutes />}>
         <Route
           path="/profile"
-          element={<Profile setVisible={setVisible} />}
+          element={<Profile user={user} setVisible={setVisible} />}
           exact
         />
         <Route
           path="/profile/:username"
-          element={<Profile setVisible={setVisible} />}
+          element={<Profile user={user} setVisible={setVisible} />}
           exact
         />
           <Route
             path="/friends"
             element={
-              <Friends setVisible={setVisible} getAllPosts={getAllPosts} />
+              <Friends user={user} setVisible={setVisible} getAllPosts={getAllPosts} />
             }
             exact
           />
@@ -86,18 +86,18 @@ function App() {
             <Route
             path="/friends/:type"
             element={
-              <Friends setVisible={setVisible} getAllPosts={getAllPosts} />
+              <Friends user={user} setVisible={setVisible} getAllPosts={getAllPosts} />
             }
             exact
           />
         <Route
           path="/"
-          element={<Home setVisible={setVisible} posts={posts} />}
+          element={<Home user={user} setVisible={setVisible} posts={posts} />}
           exact
         />
           <Route
           path="/messenger"
-          element={<Messenger setVisible={setVisible} />}
+          element={<Messenger user={user} setVisible={setVisible} />}
           exact
         />
         {/* <Route path="/activate/:token" element={<Activate />} exact /> */}

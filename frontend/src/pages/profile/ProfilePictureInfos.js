@@ -6,6 +6,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 
 export default function ProfilePictureInfos({
+  user,
   profile,
   visitor,
   photos,
@@ -36,7 +37,7 @@ export default function ProfilePictureInfos({
   // }
   return (
     <div className="profile_img_wrap">
-      {show && <ProfilePicture setShow={setShow} pRef={pRef} photos={photos} />}
+      {show && <ProfilePicture user={user} setShow={setShow} pRef={pRef} photos={photos} />}
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
@@ -99,7 +100,7 @@ export default function ProfilePictureInfos({
         
       </div>
       {visitor ? (
-        <Friendship friendshipp={profile?.friendship} profileid={profile._id} />
+        <Friendship friendshipp={profile?.friendship} profileid={profile._id} user={user} />
       ) : (
        ""
       )}

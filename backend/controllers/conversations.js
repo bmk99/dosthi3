@@ -43,16 +43,26 @@ exports.newConversation = async (req, res) => {
 
 //...//to get the conversations of a particualr
 exports.getConversation = async (req, res) => {
+  // try {
+  //   const conversation = await ConversationSchema.find({
+  //     members: { $in: [req.params.userId] },
+  //   });
+    
+  //   // console.log(req.params.userId)
+  //   // console.log(conversation)
+  //   return res.status(200).json(conversation);
+  // } catch (err) {
+  //   return res.status(500).json(err);
+  // }
   try {
     const conversation = await ConversationSchema.find({
       members: { $in: [req.params.userId] },
-    });
-    
-    // console.log(req.params.userId)
-    console.log(conversation)
+    })
+    .populate('members', '-password'); // Populate 'members' field, excluding 'password' field
+
     return res.status(200).json(conversation);
   } catch (err) {
-    return res.status(500).json(err);
+    return res.status(500).json({ error: err.message });
   }
 };
 

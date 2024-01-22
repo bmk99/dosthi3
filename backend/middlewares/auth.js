@@ -11,7 +11,7 @@ exports.authUser = (req, res, next) => {
                 return res.status(400).json({ message: "Invalid Authentification" })
             }
             req.user = user
-            console.log(req.user)
+            // console.log(req.user)
             next();
         })
     } catch (error) {

@@ -6,8 +6,8 @@ import RightHome from "../../components/home/right";
 import Stories from "../../components/home/stories";
 import Post from "../../components/post/index"
 import "./style.css";
-export default function Home({setVisible,posts}) {
-  const { user } = useSelector((state) => ({ ...state }));
+export default function Home({setVisible,posts,user}) {
+  // const { user } = useSelector((state) => ({ ...state }));
   return (
     <div className="home">
       <Header />

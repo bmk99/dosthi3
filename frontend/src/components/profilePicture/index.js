@@ -5,9 +5,9 @@ import useOnClickOutside from "../../helpers/clickOutside";
 import { photosReducer } from "../../functions/reducers";
 import { useSelector } from "react-redux";
 import DangerousIcon from '@mui/icons-material/Dangerous';
-export default function ProfilePicture({ username, setShow, pRef, photos }) {
+export default function ProfilePicture({ username, setShow, pRef, photos,user }) {
   const popup = useRef(null);
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
   //useOnClickOutside(popup, () => setShow(false));
   const refInput = useRef(null);
   const [image, setImage] = useState("");
@@ -109,6 +109,7 @@ export default function ProfilePicture({ username, setShow, pRef, photos }) {
           setShow={setShow}
           setError={setError}
           pRef={pRef}
+          user={user}
         />
       )}
     </div>

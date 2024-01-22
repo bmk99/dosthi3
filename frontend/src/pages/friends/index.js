@@ -14,8 +14,8 @@ import CakeIcon from '@mui/icons-material/Cake';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import "./style.css";
-export default function Friends() {
-  const { user } = useSelector((state) => ({ ...state }));
+export default function Friends({user}) {
+  // const { user } = useSelector((state) => ({ ...state }));
   const { type } = useParams();
 
   const [{ loading, error, data }, dispatch] = useReducer(friendspage, {

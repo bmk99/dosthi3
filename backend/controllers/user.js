@@ -76,7 +76,7 @@ exports.register = async (req, res) => {
     }).save();
 
     res.send({
-      id: user._id,
+      _id: user._id,
       username: user.username,
       picture: user.picture,
       first_name: user.first_name,
@@ -112,8 +112,9 @@ exports.login = async (req, res) => {
       expiresIn: "7d",
     });
 
+
     res.json({
-      id: user._id,
+      _id: user._id,
       username: user.username,
       picture: user.picture,
       first_name: user.first_name,
@@ -263,6 +264,7 @@ exports.getProfile = async (req, res) => {
     // console.log(profile)
     console.log(isObjectId)
     console.log(identifier)
+    console.log(req.user)
     const user = await User.findById(req.user.id);
     const friendship = {
       friends: false,

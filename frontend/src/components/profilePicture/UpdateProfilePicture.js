@@ -15,6 +15,7 @@ export default function UpdateProfilePicture({
   setError,
   setShow,
   pRef,
+  user
 }) {
   const dispatch = useDispatch();
   const [description, setDescription] = useState("");
@@ -22,7 +23,7 @@ export default function UpdateProfilePicture({
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const slider = useRef(null);
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);

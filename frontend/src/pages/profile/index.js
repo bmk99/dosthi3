@@ -13,10 +13,10 @@ import Post from "../../components/post";
 import Photos from "./Photos";
 import Intro from "../../components/intro/Index";
 import { useMediaQuery } from "react-responsive";
-export default function Profile({setVisible}) {
+export default function Profile({setVisible,user}) {
   const { username } = useParams();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
   const [photos, setPhotos] = useState({});
   var userName = username === undefined ? user.username : username;
  console.log(user)
@@ -109,8 +109,10 @@ export default function Profile({setVisible}) {
             cover={profile.cover}
             visitor={visitor}
             photos={photos.resources}
+            user={user}
           />
           <ProfilePictureInfos
+          user={user}
             profile={profile}
             visitor={visitor}
             photos={photos.resources}
@@ -122,6 +124,7 @@ export default function Profile({setVisible}) {
         <div className="profile_container">
           <div className="bottom_container">
           <Intro
+          user={user}
                   detailss={profile.details}
                   visitor={visitor}
                   setOthername={setOthername}
@@ -139,6 +142,7 @@ export default function Profile({setVisible}) {
               <div className="profile_left" ref={leftSide}>
                 
                 <Photos
+                
                   username={userName}
                   token={user.token}
                   photos={photos}

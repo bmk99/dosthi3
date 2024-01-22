@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useClickOutside from "../../helpers/clickOutside";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import {
   acceptRequest,
   addFriend,
@@ -18,7 +18,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Friendship({ friendshipp, profileid }) {
+export default function Friendship({ friendshipp, profileid ,user}) {
   const [friendship, setFriendship] = useState(friendshipp);
   useEffect(() => {
     setFriendship(friendshipp);
@@ -28,15 +28,15 @@ export default function Friendship({ friendshipp, profileid }) {
   const menu = useRef(null);
   const menu1 = useRef(null);
   const navigate = useNavigate();
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
 
   const [inputs, setInputs] = useState("");
   useEffect(() => {
     setInputs({
-      user1: user.id,
+      user1: user._id,
       user2: profileid,
     });
-  }, [profileid, user.id]);
+  }, [profileid, user._id]);
   useClickOutside(menu, () => setFriendsMenu(false));
   useClickOutside(menu1, () => setRespondMenu(false));
 
