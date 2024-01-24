@@ -3,3 +3,4 @@ vijay
 
 modifications edited in 
 
+- working on the getallposts
