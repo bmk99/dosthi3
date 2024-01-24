@@ -17,9 +17,13 @@ app.use(
   })
 );
 const options = {
-  origin: "http://localhost:3000",
+  origin: "http://192.168.30.79:3000",
   useSucessStatus: 200,
 };
+app.use((req,res,next) =>{
+  res.header("Access-Control-Allow-Credentials",true)
+  next()
+})
 app.use(cors(options));
 
 app.use(express.json());
@@ -40,6 +44,74 @@ app.use(
   messages,
   conversation
 );
-app.listen(PORT, () => {
-  console.log(`sever is running at ${PORT}....`);
+
+const server = app.listen(PORT, '192.168.30.79',() => {
+  console.log(`sever is running at http://192.168.30.79:${PORT}....`);
 });
+
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://192.168.30.79:3000",
+    // credentials: true,
+  },
+});
+
+
+
+let users = [];
+
+const addUser = (userId, socketId) => {
+  console.log(!users.some((user) => user.userId === userId))
+  if (!users.some((user) => user.userId === userId)) {
+    users.push({ userId, socketId });
+  }
+};
+
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (receiverId) => {
+  return users.find((user) => user.userId === receiverId);
+};
+
+io.on("connection", (socket) => {
+  console.log("user connected ");
+
+  // io.emit("start", "Hello world");
+// 
+  socket.on("addUser", (userId) => {
+    addUser(userId, socket.id);
+    io.emit("getUsers", users);
+  });
+
+  socket.on("sendMessage", ({ senderUser, receiverId, text }) => {
+    const user = getUser(receiverId);
+    
+    if (user) {
+      io.to(user.socketId).emit("getMessage", {
+        senderUser,
+        text,
+      });
+    } else {
+      console.log(`User with ID ${receiverId} not found`);
+    }
+    // ----
+   
+      
+    }
+  );
+
+  socket.on("disconnect", () => {
+    console.log("A user disconnected.");
+    removeUser(socket.id);
+    io.emit("getUsers", users);
+  });
+});
+
+// You might want to handle errors here as well
+io.on("error", (err) => {
+  console.error("Socket.IO error:", err.message);
+});
+

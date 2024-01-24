@@ -25,7 +25,7 @@ function Messenger({user}) {
 
   // Initializing the socket and getting new messages
   useEffect(() => {
-    socket.current = io("ws://localhost:8001");
+    socket.current = io("http://192.168.30.79:8000");
 
     socket.current.on("getMessage", (data) => {
       console.log(data && data);
