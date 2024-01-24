@@ -44,7 +44,7 @@ export default function Profile({setVisible,user}) {
         type: "PROFILE_REQUEST",
       });
       const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/getProfile/${userName}`,
+        `/api1/getProfile/${userName}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -56,7 +56,7 @@ export default function Profile({setVisible,user}) {
       } else {
         try {
           const images = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/listImages`,
+            `/api1/listImages`,
             { path, sort, max },
             {
               headers: {
@@ -99,7 +99,8 @@ export default function Profile({setVisible,user}) {
   const getScroll = () => {
     setScrollHeight(window.pageYOffset);
   };
-  console.log(profile);
+  console.log({profile});
+  console.log({photos})
   return (
     <div className="profile">
       <Header page="profile" />

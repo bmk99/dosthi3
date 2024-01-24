@@ -21,7 +21,7 @@ export default function Photos({ username, token }) {
         type: "PHOTOS_REQUEST",
       });
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/listImages`,
+        `/api1/listImages`,
         { path, sort, max },
         {
           headers: {

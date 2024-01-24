@@ -90,7 +90,7 @@ export default function Friendship({ friendshipp, profileid ,user}) {
   const handleMessage = async () => {
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/newConversation`,
+        `/api1/newConversation`,
         inputs,
         {
           headers: {

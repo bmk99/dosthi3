@@ -32,7 +32,7 @@ export default function CreatePostPopup({ user, setVisible }) {
         background,
         text,
         null,
-        user.id,
+        user._id,
         user.token
       );
       setLoading(false);
@@ -61,7 +61,7 @@ export default function CreatePostPopup({ user, setVisible }) {
         null,
         text,
         response,
-        user.id,
+        user._id,
         user.token
       );
       setLoading(false);
@@ -79,7 +79,7 @@ export default function CreatePostPopup({ user, setVisible }) {
         null,
         text,
         null,
-        user.id,
+        user._id,
         user.token
       );
       setLoading(false);

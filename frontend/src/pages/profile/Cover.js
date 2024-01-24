@@ -13,12 +13,12 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 
 
-export default function Cover({ cover, visitor, photos }) {
+export default function Cover({ cover, visitor, photos ,user}) {
   const [showCoverMneu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
   const menuRef = useRef(null);
   const refInput = useRef(null);
   const cRef = useRef(null);
@@ -89,7 +89,7 @@ export default function Cover({ cover, visitor, photos }) {
       const updated_picture = await updateCover(res[0].url, user.token);
       if (updated_picture === "ok") {
         const new_post = await createPost(
-          "coverPicture",
+          "api1/coverPicture",
           null,
           null,
           res,

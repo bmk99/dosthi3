@@ -9,7 +9,7 @@ export const createPost = async (
 ) => {
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/createPost`,
+      `api1/createPost`,
       {
         type,
         background,
@@ -31,7 +31,7 @@ export const createPost = async (
 export const reactPost = async (postRef, react, token) => {
   try {
     const { data } = await axios.put(
-      `${process.env.REACT_APP_BACKEND_URL}/postReact`,
+      `/api1/postReact`,
       {
        postRef,
         react, 
@@ -52,7 +52,7 @@ export const reactPost = async (postRef, react, token) => {
 export const getReacts = async (postId, token) => {
   try {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/getReacts/${postId}`,
+      `api1/getReacts/${postId}`,
 
       {
         headers: {
@@ -71,7 +71,7 @@ export const getReacts = async (postId, token) => {
 export const comment = async (postId, comment, image, token) => {
   try {
     const { data } = await axios.put(
-      `${process.env.REACT_APP_BACKEND_URL}/comment`,
+      `api1/comment`,
       {
         postId, comment, image
       },

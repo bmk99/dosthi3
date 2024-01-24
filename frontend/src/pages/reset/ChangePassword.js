@@ -31,7 +31,7 @@ export default function ChangePassword({
 const changepassword=async()=>{
   try {
     setLoading(true)
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/changepassword`,
+    await axios.post(`/api1/changepassword`,
     {
       email,
       password

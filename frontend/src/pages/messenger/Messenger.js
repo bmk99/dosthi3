@@ -25,7 +25,16 @@ function Messenger({user}) {
 
   // Initializing the socket and getting new messages
   useEffect(() => {
-    socket.current = io("ws://localhost:8001");
+    socket.current = io("");
+  //   socket.current = io({
+  //     protocols: ["http"],
+  // });
+    
+  //  socket.current = io({
+  //     protocols: ["http"],
+  // });
+  // socket.current = io();
+
 
     socket.current.on("getMessage", (data) => {
       console.log(data && data);
@@ -76,7 +85,7 @@ function Messenger({user}) {
     const getData = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/getConversation/${user._id}`,
+          `/api1/getConversation/${user._id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -97,7 +106,7 @@ function Messenger({user}) {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-                    `${process.env.REACT_APP_BACKEND_URL}/getMessages/${currentChat?._id}`,
+                    `/api1/getMessages/${currentChat?._id}`,
                     {
                       headers: {
                         Authorization: `Bearer ${user.token}`,
@@ -142,7 +151,7 @@ function Messenger({user}) {
       setLoading(true);
       setText("");
       const res =await axios.post(
-                `${process.env.REACT_APP_BACKEND_URL}/newMessage/`,inputs,
+                `/api1/newMessage/`,inputs,
                 {
                   headers: {
                     Authorization: `Bearer ${user.token}`,
@@ -163,9 +172,9 @@ function Messenger({user}) {
     scroolRef.current?.scrollIntoView({ behavior: "smooth" });
   });
 
-  // console.log({ currentChat });
-  // console.log({ messages });
-  // console.log({ arrivalMessages });
+  console.log({ currentChat });
+  console.log({ messages });
+  console.log({ arrivalMessages });
   console.log({ chatOnline });
 
   // for group by data
