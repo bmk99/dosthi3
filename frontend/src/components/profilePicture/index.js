@@ -72,7 +72,7 @@ export default function ProfilePicture({ username, setShow, pRef, photos,user })
         <div className="old_pictures_wrap scrollbar">
           <h4>your profile pictures</h4>
           <div className="old_pictures">
-            {photos
+            {photos && photos
               .filter(
                 (img) => img.folder === `${user.username}/profile_pictures`
               )
@@ -87,7 +87,7 @@ export default function ProfilePicture({ username, setShow, pRef, photos,user })
           </div>
           <h4>other pictures</h4>
           <div className="old_pictures">
-            {photos
+            { photos && photos
               .filter(
                 (img) => img.folder !== `${user.username}/profile_pictures`
               )
