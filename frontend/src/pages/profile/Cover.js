@@ -93,7 +93,7 @@ export default function Cover({ cover, visitor, photos ,user}) {
           null,
           null,
           res,
-          user.id,
+          user._id,
           user.token
         );
         console.log(new_post);

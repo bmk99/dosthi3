@@ -73,7 +73,7 @@ export default function UpdateProfilePicture({
           null,
           description,
           res,
-          user.id,
+          user._id,
           user.token
         );
         if (new_post === "ok") {

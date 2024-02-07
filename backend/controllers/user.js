@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
         message: "first name between 3 to 30 charectors",
       });
     }
-    if (!validateLength(last_name, 3, 10)) {
+    if (!validateLength(last_name, 1, 10)) {
       return res.status(400).json({
         message: "last name between 3 to 10 charectors",
       });
