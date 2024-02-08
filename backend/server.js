@@ -20,15 +20,15 @@ app.use(
 
 // cors
 //  n
-// const options = {
-//   origin: "http://localhost:3000",
-//   useSucessStatus: 200,
-// };
-// app.use(cors(options));
+const options = {
+  origin: "http://localhost:3000",
+  useSucessStatus: 200,
+};
+app.use(cors(options));
 // n
 
 
-app.use(cors());
+// app.use(cors());
 
 
 app.use(express.json());
@@ -56,10 +56,10 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
-  // cors: {
-  //   origin: "http://localhost:3000",
-  //   // credentials: true,
-  // },
+  cors: {
+    origin: "http://localhost:3000",
+    // credentials: true,
+  },
 });
 
 
