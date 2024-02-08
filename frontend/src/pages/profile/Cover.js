@@ -93,7 +93,7 @@ export default function Cover({ cover, visitor, photos }) {
           null,
           null,
           res,
-          user.id,
+          user._id,
           user.token
         );
         console.log(new_post);
@@ -101,9 +101,9 @@ export default function Cover({ cover, visitor, photos }) {
           setLoading(false);
           setCoverPicture("");
           cRef.current.src = res[0].url;
+          
         } else {
           setLoading(false);
-
           setError(new_post);
         }
       } else {
