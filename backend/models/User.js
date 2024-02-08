@@ -42,6 +42,7 @@ const userSchema = mongoose.Schema(
     cover: {
       type: String,
       trim: true,
+      default :"https://th.bing.com/th/id/R.4e270d231a3e97ff072cce7be388baf2?rik=pA2JiQ6E9XePvQ&riu=http%3a%2f%2fmyfbcovers.com%2fuploads%2fsomecovers%2fdownload%2fbouquet-mother-day-default+facebook+timeline+cover.jpg&ehk=kWUHYMOB11POsPIwsMRMFtLbyT89eh3bKMaLba5EIHk%3d&risl=&pid=ImgRaw&r=0"
     },
     gender: {
       type: String,

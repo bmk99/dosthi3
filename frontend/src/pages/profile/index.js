@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,13 +12,13 @@ import Post from "../../components/post";
 import Photos from "./Photos";
 import Intro from "../../components/intro/Index";
 import { useMediaQuery } from "react-responsive";
-export default function Profile({setVisible,user}) {
+export default function Profile({ setVisible, user }) {
   const { username } = useParams();
   const navigate = useNavigate();
   // const { user } = useSelector((state) => ({ ...state }));
   const [photos, setPhotos] = useState({});
   var userName = username === undefined ? user.username : username;
- console.log(user)
+  console.log(user);
   const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
     loading: false,
     profile: {},
@@ -43,14 +42,11 @@ export default function Profile({setVisible,user}) {
       dispatch({
         type: "PROFILE_REQUEST",
       });
-      const { data } = await axios.get(
-        `/api1/getProfile/${userName}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const { data } = await axios.get(`/api1/getProfile/${userName}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       if (data.ok === false) {
         navigate("/profile");
       } else {
@@ -99,24 +95,24 @@ export default function Profile({setVisible,user}) {
   const getScroll = () => {
     setScrollHeight(window.pageYOffset);
   };
-  console.log({profile});
-  console.log({photos})
+  console.log({ profile });
+  console.log({ photos });
   return (
     <div className="profile">
       <Header page="profile" />
       <div className="profile_top" ref={profileTop}>
         <div className="profile_container">
           <Cover
-            cover={profile.cover}
+            profile={profile}
             visitor={visitor}
             photos={photos.resources}
             user={user}
           />
           <ProfilePictureInfos
-          user={user}
             profile={profile}
             visitor={visitor}
             photos={photos.resources}
+            user={user}
             othername={othername}
           />
         </div>
@@ -124,12 +120,12 @@ export default function Profile({setVisible,user}) {
       <div className="profile_bottom">
         <div className="profile_container">
           <div className="bottom_container">
-          <Intro
-          user={user}
-                  detailss={profile.details}
-                  visitor={visitor}
-                  setOthername={setOthername}
-                />
+            <Intro
+              user={user}
+              detailss={profile.details}
+              visitor={visitor}
+              setOthername={setOthername}
+            />
             <div
               className={`profile_grid ${
                 check && scrollHeight >= height && leftHeight > 1000
@@ -141,22 +137,23 @@ export default function Profile({setVisible,user}) {
               }`}
             >
               <div className="profile_left" ref={leftSide}>
-                
                 <Photos
-                
                   username={userName}
                   token={user.token}
                   photos={photos}
                 />
-               
               </div>
               <div className="profile_right">
-             
                 <GridPosts />
                 <div className="posts">
                   {profile.posts && profile.posts.length ? (
                     profile.posts.map((post) => (
-                      <Post post={post} user={user} key={post._id} profile={profile} />
+                      <Post
+                        post={post}
+                        user={user}
+                        key={post._id}
+                        profile={profile}
+                      />
                     ))
                   ) : (
                     <div className="no_posts">No posts available</div>
@@ -170,4 +167,3 @@ export default function Profile({setVisible,user}) {
     </div>
   );
 }
-

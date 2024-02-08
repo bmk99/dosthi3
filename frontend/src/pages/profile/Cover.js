@@ -3,7 +3,8 @@ import Cropper from "react-easy-crop";
 import useClickOutside from "../../helpers/clickOutside";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import { uploadImages } from "../../functions/uploadImages";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
 import { updateCover } from "../../functions/user";
 import { createPost } from "../../functions/post";
 import PulseLoader from "react-spinners/PulseLoader";
@@ -13,7 +14,8 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 
 
-export default function Cover({ cover, visitor, photos ,user}) {
+export default function Cover({ profile, visitor, photos ,user}) {
+  const dispatch = useDispatch()
   const [showCoverMneu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState("");
   const [loading, setLoading] = useState(false);
@@ -89,7 +91,7 @@ export default function Cover({ cover, visitor, photos ,user}) {
       const updated_picture = await updateCover(res[0].url, user.token);
       if (updated_picture === "ok") {
         const new_post = await createPost(
-          "api1/coverPicture",
+          "coverPicture",
           null,
           null,
           res,
@@ -101,6 +103,17 @@ export default function Cover({ cover, visitor, photos ,user}) {
           setLoading(false);
           setCoverPicture("");
           cRef.current.src = res[0].url;
+          Cookies.set(
+            "user",
+            JSON.stringify({
+              ...user,
+              cover: res[0].url,
+            })
+          );
+          dispatch({
+            type: "COVERPICTURE",
+            payload: res[0].url,
+          });
         } else {
           setLoading(false);
 
@@ -118,6 +131,8 @@ export default function Cover({ cover, visitor, photos ,user}) {
   };
   return (
     <div className="profile_cover" ref={coverRef}>
+
+
       {coverPicture && (
         <div className="save_changes_cover">
         
@@ -164,8 +179,8 @@ export default function Cover({ cover, visitor, photos ,user}) {
           />
         </div>
       )}
-      {cover && !coverPicture && (
-        <img src={cover} className="cover" alt="" ref={cRef} />
+      {!coverPicture && (
+        <img src={profile.cover} className="cover" alt="" ref={cRef} />
       )}
       {!visitor && (
         <div className="udpate_cover_wrapper">

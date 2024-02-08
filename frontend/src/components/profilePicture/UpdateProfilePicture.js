@@ -69,7 +69,7 @@ export default function UpdateProfilePicture({
       );
       if (updated_picture === "ok") {
         const new_post = await createPost(
-          "/api1/profilePicture",
+          "profilePicture",
           null,
           description,
           res,
